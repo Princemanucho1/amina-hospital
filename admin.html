@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>Staff Dashboard | Amina Hospital</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+table{width:100%;border-collapse:collapse;background:var(--sf);border-radius:12px;overflow:hidden;font-size:.9rem}th,td{padding:10px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}th{background:var(--mint)}.tw{overflow-x:auto}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px}.tabs button{border:1px solid var(--ln);background:var(--sf);color:var(--ink);padding:9px 16px;border-radius:99px;font:600 .94rem var(--b);cursor:pointer}.tabs button.on{background:var(--br);color:#fff;border-color:var(--br)}
+.tb{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.tb input{max-width:280px}
+.banner{background:#fff3cd;color:#5c4400;border-radius:10px;padding:10px 14px;font-size:.9rem;margin-bottom:14px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--mint);font-size:.82rem;font-weight:600}
+dialog.fm{border:1px solid var(--ln);border-radius:16px;background:var(--sf);color:var(--ink);padding:20px;width:min(640px,94vw);max-height:90vh;overflow:auto}dialog.fm::backdrop{background:rgba(0,0,0,.6)}
+#ff{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;border:0;padding:0;background:none}.wide{grid-column:1/-1}.act{display:flex;gap:10px;justify-content:flex-end}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin:12px 0}.pgrid span{color:var(--mu)}
+.vc{border:1px solid var(--ln);border-radius:12px;padding:12px;margin-top:10px}.vc p{margin:4px 0}
+.dd{width:60px;height:60px;border-radius:50%;object-fit:cover;background:var(--mint)}
+.sec{display:none}.sec.on{display:block}#app{display:none}
+@media(max-width:600px){#ff,.pgrid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap" style="padding-bottom:70px">
+<div class="top"><h1 style="font-size:1.6rem">Amina Hospital: Staff Dashboard</h1><a href="index.html" class="btn ghost sm">View website</a></div>
+<form id="lg" style="max-width:380px;margin-top:20px"><div id="mode" class="note"></div>
+<label id="el">Email<input id="em" type="email" autocomplete="username"></label>
+<label>Password<input id="pw" type="password" required autocomplete="current-password"></label>
+<button class="btn call">Sign in</button><p class="note" id="er" style="color:var(--al)"></p></form>
+
+<div id="app">
+<div id="bn"></div>
+<div class="tabs" id="tabs"><button data-t="dash" class="on">Overview</button><button data-t="appts">Appointments <span class="badge" id="nb">0</span></button><button data-t="pats">Patients</button><button data-t="docs">Doctors</button><button data-t="set">Settings</button><button id="out" style="margin-left:auto">Sign out</button></div>
+<div id="main">
+<div class="sec on" id="s-dash"></div><div class="sec" id="s-appts"></div><div class="sec" id="s-pats"></div><div class="sec" id="s-docs"></div><div class="sec" id="s-set"></div>
+</div></div></div>
+
+<dialog class="fm" id="fd"><h2 id="ft" style="font-size:1.3rem"></h2><form id="ff"></form></dialog>
+<dialog class="fm" id="pd"></dialog>
+<script src="assets/data.js"></script><script src="assets/db.js"></script><script src="assets/admin.js"></script>
+</body></html>

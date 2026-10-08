@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Patient Portal | Amina Community Hospital Centre</title><meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css"></head>
+<body><div class="wrap" style="max-width:640px;padding-top:28px;padding-bottom:60px">
+<a href="index.html" class="logo">← Amina Community Hospital</a>
+<h1 style="font-size:2rem;margin-top:18px">Patient portal</h1>
+<p class="sub">See your visit history. Enter the Patient ID printed on your hospital card and your date of birth.</p>
+<form id="pf"><label>Patient ID<input id="pid" required placeholder="AMN-XXXXXX" autocomplete="off"></label>
+<label>Date of birth<input id="dob" type="date" required></label>
+<button class="btn call">View my records</button></form>
+<div id="out" style="margin-top:20px"></div>
+<p class="note" style="margin-top:24px">Need help? Call <a href="tel:+254700636437"><b>0700 636437</b></a>. In an emergency, call immediately.</p>
+</div>
+<script src="assets/data.js"></script><script src="assets/db.js"></script>
+<script>
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+document.getElementById('pf').onsubmit=async function(e){e.preventDefault();var o=document.getElementById('out');o.innerHTML='Looking up...';
+try{var r=await DB.lookup(document.getElementById('pid').value,document.getElementById('dob').value);
+if(!r){o.innerHTML='<div class="card"><div class="pad"><b>No record found.</b><p>Check your Patient ID and date of birth, or ask reception for help.</p></div></div>';return}
+var v=r.visits||[];o.innerHTML='<h2 style="font-size:1.4rem">'+esc(r.patient.name)+'</h2><p class="note">Patient ID: '+esc(r.patient.pid)+'</p>'+(v.length?v.map(function(x){return '<div class="card" style="margin-top:12px"><div class="pad"><h3>'+esc(x.date)+(x.doctor?' · '+esc(x.doctor):'')+'</h3>'+(x.diagnosis?'<p><b>Diagnosis:</b> '+esc(x.diagnosis)+'</p>':'')+(x.treatment?'<p><b>Treatment / prescription:</b> '+esc(x.treatment)+'</p>':'')+(x.followup?'<p><b>Follow-up:</b> '+esc(x.followup)+'</p>':'')+'</div></div>'}).join(''):'<p>No visits recorded yet.</p>')}
+catch(er){o.innerHTML='<p>Could not load records. Please try again or call the hospital.</p>'}}
+</script></body></html>
